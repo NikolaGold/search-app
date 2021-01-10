@@ -73,7 +73,7 @@ const StyledButton = styled(Button)`
 export default function SearchingPane() {
   const router = useRouter();
   const { query } = router;
-  const [disposition, setDisposition] = React.useState<string[]>(Array.isArray(query.disposition) ? query.disposition : []);
+  const [disposition, setDisposition] = React.useState<string[]>(Array.isArray(query.disposition) ? query.disposition : [query.disposition]);
   const [location, setLocation] = React.useState(query.location ? query.location : '');
   const [equipment, setEquipment] = React.useState(query.equipment ? query.equipment : '');
   const [commission, setCommission] = React.useState(query.commission ? query.commission : '');

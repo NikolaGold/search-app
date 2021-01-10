@@ -8,17 +8,6 @@ import Link from 'next/link';
 import React from 'react';
 import ModalWindow from './ModalWindow';
 
-type ProfileCardProps = {
-    id: number
-    image: string
-    location: string
-    disposition: string
-    dimension: number
-    cost: number
-    commission: string
-    equipment: string
-}
-
 const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -65,6 +54,17 @@ const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+type ProfileCardProps = {
+    id: number
+    image: string
+    location: string
+    disposition: string
+    dimension: number
+    cost: number
+    commission: string
+    equipment: string
+}
 
 const ProfileCard = ({
   id, image, location, disposition, dimension, cost, commission, equipment,
