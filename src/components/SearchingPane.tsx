@@ -160,7 +160,7 @@ export default function SearchingPane() {
             </StyledFormControl>
                       )}
           name="location"
-          defaultValue={query.location}
+          defaultValue={location}
           control={control}
         />
         <Controller
@@ -223,7 +223,7 @@ export default function SearchingPane() {
             </StyledFormControl>
                       )}
           name="commission"
-          defaultValue={query.commission}
+          defaultValue={commission}
           control={control}
         />
         <Controller
@@ -248,7 +248,7 @@ export default function SearchingPane() {
                       )}
           name="equipment"
           control={control}
-          defaultValue={query.equipment}
+          defaultValue={equipment}
         />
         <Controller
           render={() => (
@@ -282,7 +282,7 @@ export default function SearchingPane() {
           )}
           name="disposition"
           control={control}
-          defaultValue={query.disposition}
+          defaultValue={disposition}
           multiple
         />
         <StyledButton
