@@ -1,7 +1,7 @@
-import {NextApiResponse} from "next";
-import {Env} from "@next/env";
+import { NextApiResponse } from 'next';
+import { Env } from '@next/env';
 
-import {data} from "../../../data/data";
+import { data } from '../../../src/data/data';
 
 type NextApiRequestProps = {
     query: {
@@ -17,14 +17,14 @@ type NextApiRequestProps = {
 }
 
 export default function flatHandler(req: NextApiRequestProps, res: NextApiResponse) {
-    const {
-        query: {id},
-    } = req
-    const filtered = data.filter((element) => element.id == id)
+  const {
+    query: { id },
+  } = req;
+  const filtered = data.find((element) => element.id == id);
 
-    if (filtered.length > 0) {
-        res.status(200).json(filtered[0])
-    } else {
-        res.status(404).json({message: `Flat with id: ${id} not found.`})
-    }
+  if (filtered) {
+    res.status(200).json(filtered);
+  } else {
+    res.status(404).json({ message: `Flat with id: ${id} not found.` });
+  }
 }
