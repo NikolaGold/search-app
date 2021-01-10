@@ -22,6 +22,7 @@ export const PARTIALLY_EQUIPPED = 'Částečně vybavený';
 export const UNEQUIPPED = 'Nevybavený';
 export const API_SEARCH = 'http://localhost:3000/api/search';
 export const API_FLAT_DETAIL = 'http://localhost:3000/api/flat-detail/';
+export const NOT_FOUND_FLAT = 'Nenalezen žádný volný byt';
 
 export const ErrorMap = {
   numberFieldError: 'Zadejte prosím kladné číslo',

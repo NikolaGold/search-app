@@ -10,7 +10,7 @@ const StyledProfileDiv = styled.div`
   align-items: center;
   min-width: 1450px;
   background-color: aliceblue;
-  @media (max-width: 768px) {
+  @media (max-width: 420px) {
     margin: 0;
     min-width: 100px;
   };
@@ -21,10 +21,17 @@ const StyledProfileDiv = styled.div`
 `;
 
 type ProfileListProps = {
-    flats: {
-        [key: string]: string | string[];
-    };
-    totalPages: number
+    flats: Array<{
+    id: number
+    image: string
+    location: string
+    disposition: string
+    dimension: number
+    cost: number
+    commission: string
+    equipment: string
+}>;
+    totalPages: number;
 }
 
 const ProfileList = ({ flats, totalPages }: ProfileListProps) => (

@@ -19,17 +19,34 @@ const StyledHeaderContainer = styled.div`
 `;
 
 const StyledMain = styled.main`
-  padding: 1rem 0;
+  padding: 16px 0;
   margin: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  @media (max-width: 420px) {
+  padding: 0;
+    margin: 0;
+  };
+  @media (max-width: 1024px) {
+    padding: 0;
+    margin: 0;
+  };
 `;
 
 type HomeProps = {
     flats: {
-        data: { [key: string]: string | string[] }
+        data: Array<{
+        id: number
+        image: string
+        location: string
+        disposition: string
+        dimension: number
+        cost: number
+        commission: string
+        equipment: string
+    }>;
         totalPages: number;
     };
 }

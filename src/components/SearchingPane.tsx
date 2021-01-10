@@ -50,7 +50,7 @@ const StyledForm = styled.form`
   width: 100%;
   min-height: 60px;
   margin: 5px;
-  @media (max-width: 768px) {
+  @media (max-width: 420px) {
     flex-direction: column;
   };
 `;

@@ -32,7 +32,7 @@ const StyledList = styled(List)`
   max-width: 400px;
   background-color: white;
   margin: 0 0 10px;
-  @media (max-width: 768px) {
+  @media (max-width: 420px) {
     margin: 0;
   };
   @media (max-width: 1024px) {
@@ -45,7 +45,7 @@ const StyledMessageList = styled(List)`
   max-width: 1000px;
   background-color: white;
   margin: 0 0 30px 0;
-  @media (max-width: 768px) {
+  @media (max-width: 420px) {
     margin: 0;
   };
   @media (max-width: 1024px) {
@@ -60,7 +60,7 @@ const StyledContainerDiv = styled.div`
   height: 100%;
   background-color: aliceblue;
   margin: 40px 120px 0 120px;
-  @media (max-width: 768px) {
+  @media (max-width: 420px) {
     margin: 0;
     flex-direction: column;
     align-items: center;
@@ -85,7 +85,7 @@ const StyledMainListDiv = styled.div`
 const StyledButton = styled(Button)`
   margin: 40px 0 10px;
   max-height: 90px;
-  @media (max-width: 768px) {
+  @media (max-width: 420px) {
     margin: 0;
   };
   @media (max-width: 1024px) {

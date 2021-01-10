@@ -19,7 +19,7 @@ type ProfileCardProps = {
     equipment: string
 }
 
-const StyledCardDiv = styled.div`
+const StyledButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   padding: 10px;
@@ -29,8 +29,9 @@ const StyledCard = styled(Card)`
   margin: 5px;
   flex-basis: 24%;
   min-width: 300px;
-  @media (max-width: 768px) {
-    flex-basis: 100%
+  align-items: center;
+  @media (max-width: 420px) {
+    flex:auto;
   };
   @media (max-width: 1024px) {
     flex-basis: 48%
@@ -53,6 +54,7 @@ const StyledCardContent = styled(CardContent)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   height: 100%;
 `;
 
@@ -89,7 +91,7 @@ const ProfileCard = ({
           <StyledChip label={commission} />
           <Chip label={equipment} />
         </StyledChips>
-        <StyledCardDiv>
+        <StyledButtonContainer>
           <Link href={`flat-detail/${id}`}>
             <StyledButton
               variant="contained"
@@ -99,7 +101,7 @@ const ProfileCard = ({
             </StyledButton>
           </Link>
           <ModalWindow />
-        </StyledCardDiv>
+        </StyledButtonContainer>
       </StyledContent>
     </StyledCardContent>
   </StyledCard>
