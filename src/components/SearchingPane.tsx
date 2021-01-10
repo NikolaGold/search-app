@@ -68,17 +68,18 @@ const StyledButton = styled(Button)`
 `;
 
 export default function SearchingPane() {
-  const [disposition, setDisposition] = React.useState<string[]>([]);
-  const [location, setLocation] = React.useState('');
-  const [equipment, setEquipment] = React.useState('');
-  const [commission, setCommission] = React.useState('');
+  const router = useRouter();
+  const { query } = router;
+  const [disposition, setDisposition] = React.useState<string[]>(Array.isArray(query.disposition) ? query.disposition : []);
+  const [location, setLocation] = React.useState(query.location);
+  const [equipment, setEquipment] = React.useState(query.equipment);
+  const [commission, setCommission] = React.useState(query.commission);
   const {
     handleSubmit, setValue, errors, control, getValues,
   } = useForm({
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
-  const router = useRouter();
 
   return (
     <StylesProvider injectFirst>
@@ -107,7 +108,7 @@ export default function SearchingPane() {
             />
                       )}
           name="cost-from"
-          defaultValue=""
+          defaultValue={query['cost-from']}
           control={control}
           rules={{
             required: false,
@@ -127,7 +128,7 @@ export default function SearchingPane() {
             />
                       )}
           name="cost-to"
-          defaultValue=""
+          defaultValue={query['cost-to']}
           control={control}
           rules={{
             required: false,
@@ -159,7 +160,7 @@ export default function SearchingPane() {
             </StyledFormControl>
                       )}
           name="location"
-          defaultValue=""
+          defaultValue={query.location}
           control={control}
         />
         <Controller
@@ -179,7 +180,7 @@ export default function SearchingPane() {
               message: ErrorMap.numberFieldError,
             },
           }}
-          defaultValue=""
+          defaultValue={query['dimension-from']}
           control={control}
         />
         <Controller
@@ -199,7 +200,7 @@ export default function SearchingPane() {
             },
           }}
           name="dimension-to"
-          defaultValue=""
+          defaultValue={query['dimension-to']}
           control={control}
         />
         <Controller
@@ -222,7 +223,7 @@ export default function SearchingPane() {
             </StyledFormControl>
                       )}
           name="commission"
-          defaultValue=""
+          defaultValue={query.commission}
           control={control}
         />
         <Controller
@@ -247,7 +248,7 @@ export default function SearchingPane() {
                       )}
           name="equipment"
           control={control}
-          defaultValue=""
+          defaultValue={query.equipment}
         />
         <Controller
           render={() => (
@@ -281,7 +282,7 @@ export default function SearchingPane() {
           )}
           name="disposition"
           control={control}
-          defaultValue=""
+          defaultValue={query.disposition}
           multiple
         />
         <StyledButton
