@@ -18,6 +18,15 @@ const StyledHeaderContainer = styled.div`
   width: 100%;
 `
 
+const StyledMain = styled.main`
+  padding: 1rem 0;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
 const Home = ({flats}: any) => {
     return (
         <div className={styles.container}>
@@ -25,10 +34,10 @@ const Home = ({flats}: any) => {
                 <title>Search app</title>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <main className={styles.main}>
+            <StyledMain>
                 <StyledHeaderContainer><StyledHeaderText>Najdi domov</StyledHeaderText></StyledHeaderContainer>
                 <ProfileList flats={flats.data} totalPages={flats.totalPages}/>
-            </main>
+            </StyledMain>
             <footer className={styles.footer}>
                 <div>@najdidomov.cz</div>
             </footer>

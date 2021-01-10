@@ -45,8 +45,7 @@ const dispositions = [
 const StyledForm = styled.form`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  justify-items: stretch;
+  justify-content: space-around;
   flex-wrap: wrap;
   width: 100%;
   min-height: 60px;
@@ -63,6 +62,11 @@ const StyledMenuItem = styled(MenuItem)`
 const StyledFormControl = styled(FormControl)`
   min-width: 120px;
 `;
+
+const StyledButton = styled(Button)`
+  max-height: 50px;
+`;
+
 
 export default function SearchingPane() {
     const [disposition, setDisposition] = React.useState<string[]>([]);
@@ -283,13 +287,13 @@ export default function SearchingPane() {
                     defaultValue=""
                     multiple
                 />
-                <Button
+                <StyledButton
                     type="submit"
                     variant="contained"
                     color="primary"
                 >
                     {SEARCH}
-                </Button>
+                </StyledButton>
             </StyledForm>
         </StylesProvider>
     );
