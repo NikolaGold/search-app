@@ -19,51 +19,50 @@ type NextApiRequestProps = {
 
 export default (req: NextApiRequestProps, res: NextApiResponse) => {
   const { query } = req;
-  const page = query.page || 1;
+  const flats = data;
+  const page = Number(query.page || 1);
   const entriesPerPage = Number(query['entries-per-page']) || 8;
 
-  const getCurrentFlats = (queryFlats, flats) => {
-    const currentFlats = flats;
-    const queryFilter = queryFlats['dimension-from'] || queryFlats['dimension-to'] || queryFlats['cost-from'] || ['cost-to']
-        || queryFlats.location || queryFlats.equipment || queryFlats.commission || queryFlats.disposition;
-    if (queryFilter) {
-      const dimensionFrom = queryFlats['dimension-from']
-        ? currentFlats.filter((flat) => flat.dimension >= queryFlats['dimension-from']) : flats;
-      const dimensionTo = queryFlats['dimension-to']
-        ? currentFlats.filter((flat) => flat.dimension <= queryFlats['dimension-to']) : flats;
-      const costFrom = queryFlats['cost-from'] ? currentFlats.filter((flat) => flat.cost >= queryFlats['cost-from']) : flats;
-      const costTo = queryFlats['cost-to'] ? currentFlats.filter((flat) => flat.cost <= queryFlats['cost-to']) : flats;
-      const location = queryFlats.location ? currentFlats.filter((flat) => flat.location === queryFlats.location) : flats;
-      const equipment = queryFlats.equipment
-        ? currentFlats.filter((flat) => flat.equipment.toLowerCase() === queryFlats.equipment.toLowerCase()) : flats;
-      const commission = queryFlats.commission
-        ? currentFlats.filter((flat) => flat.commission.toLowerCase() === queryFlats.commission.toLowerCase()) : flats;
-      const disposition = queryFlats.disposition ? currentFlats.filter((flat) => queryFlats.disposition.includes(flat.disposition)) : flats;
+  const filteredFlats = filterFlats();
+  const totalPages = Math.ceil(filteredFlats.length / entriesPerPage);
 
-      const newData = flats
-        .filter((item) => dimensionFrom.includes(item))
-        .filter((item) => dimensionTo.includes(item))
-        .filter((item) => costFrom.includes(item))
-        .filter((item) => costTo.includes(item))
-        .filter((item) => location.includes(item))
-        .filter((item) => disposition.includes(item))
-        .filter((item) => equipment.includes(item))
-        .filter((item) => commission.includes(item));
-
-      return (newData);
-    }
-    return (flats);
-  };
-  const paginateFlats = (pagePaginate: number, entriesPerPagePagination: number, flats) => flats.slice((pagePaginate - 1)
-      * entriesPerPagePagination, pagePaginate * entriesPerPagePagination);
-
-  let newData = getCurrentFlats(query, data);
-  const totalPages = Math.ceil(newData.length / entriesPerPage);
-
-  newData = paginateFlats(page, entriesPerPage, newData);
   res.statusCode = 200;
   res.json({
-    data: newData,
+    data: paginateFlats(filteredFlats),
     totalPages,
   });
+  function filterFlats() {
+    const dimensionFrom = {
+      getValue: () => Number(query['dimension-from']),
+      apply: (value, flat: any) => flat.dimension >= value,
+    };
+    const dimensionTo = {
+      getValue: () => Number(query['dimension-to']),
+      apply: (value, flat: any) => flat.dimension <= value,
+    };
+    const costFrom = { getValue: () => Number(query['cost-from']), apply: (value, flat: any) => flat.cost >= value };
+    const costTo = { getValue: () => Number(query['cost-to']), apply: (value, flat: any) => flat.cost >= value };
+    const location = { getValue: () => query.location, apply: (value, flat: any) => flat.location === value };
+    const equipment = {
+      getValue: () => query.equipment,
+      apply: (value, flat: any) => flat.equipment.commission === value,
+    };
+    const commission = { getValue: () => query.commission, apply: (value, flat: any) => flat.commission === value };
+    const disposition = {
+      getValue: () => query.disposition,
+      apply: (value, flat: any) => flat.filter((element) => value.disposition
+        .includes(element.disposition)),
+    };
+    const filters = [dimensionFrom, dimensionTo, costFrom, costTo, location, equipment, commission, disposition];
+    return flats.filter((flat) => filters.every((filter) => applyFilter(flat, filter)));
+  }
+
+  function applyFilter(flat, filter) {
+    const value = filter.getValue();
+    return value ? filter.apply(value, flat) : true;
+  }
+
+  function paginateFlats(flatsPaginate) {
+    return flatsPaginate.slice((page - 1) * entriesPerPage, page * entriesPerPage);
+  }
 };

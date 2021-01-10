@@ -28,7 +28,7 @@ module.exports = {
     'max-len': ['error', 140],
     // note you must disable the base rule as it can report incorrect errors
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/no-use-before-define': [2, { functions: false, classes: true }],
     'react/jsx-props-no-spreading': 'off',
     eqeqeq: 'off',
   },
