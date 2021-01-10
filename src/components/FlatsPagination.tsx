@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 type FlatsPaginationProps = {
   count: number;
-}
+};
 const FlatsPagination = ({ count }: FlatsPaginationProps) => {
   const [page, setPage] = React.useState(1);
   const router = useRouter();
@@ -19,12 +19,10 @@ const FlatsPagination = ({ count }: FlatsPaginationProps) => {
       undefined,
       {
         shallow: false,
-      },
+      }
     );
   };
-  return (
-    <Pagination count={count} page={page} onChange={handleChange} />
-  );
+  return <Pagination count={count} page={page} onChange={handleChange} />;
 };
 
 export default FlatsPagination;

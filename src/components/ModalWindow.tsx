@@ -5,15 +5,7 @@ import { useForm } from 'react-hook-form';
 import { TextField } from '@material-ui/core';
 
 import styled from 'styled-components';
-import {
-  ErrorMap,
-  SEND,
-  CONTACT,
-  NAME,
-  EMAIL,
-  PHONE,
-  MESSAGE,
-} from '../constants/constants';
+import { ErrorMap, SEND, CONTACT, NAME, EMAIL, PHONE, MESSAGE } from '../constants/constants';
 
 function getModalStyle() {
   return {
@@ -61,10 +53,7 @@ const ModalWindow = () => {
 
   const body = (
     <StyledDiv style={modalStyle}>
-      <h2 id="contact">
-        {CONTACT}
-        :
-      </h2>
+      <h2 id="contact">{CONTACT}:</h2>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <StyledInput
           name="name"
@@ -126,20 +115,19 @@ const ModalWindow = () => {
           rowsMax={8}
         />
 
-        <Button variant="contained" color="primary" type="submit">{SEND}</Button>
+        <Button variant="contained" color="primary" type="submit">
+          {SEND}
+        </Button>
       </StyledForm>
     </StyledDiv>
   );
 
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={handleOpen}>{CONTACT}</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
+      <Button variant="contained" color="primary" onClick={handleOpen}>
+        {CONTACT}
+      </Button>
+      <Modal open={open} onClose={handleClose} aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description">
         {body}
       </Modal>
     </div>

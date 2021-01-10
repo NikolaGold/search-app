@@ -22,7 +22,8 @@ import {
   COMMISSION,
   EQUIPMENT,
   COST,
-  BACK_TO_FLAT_OFFER, API_FLAT_DETAIL,
+  BACK_TO_FLAT_OFFER,
+  API_FLAT_DETAIL,
 } from '../../src/constants/constants';
 import ModalWindow from '../../src/components/ModalWindow';
 import ErrorPage from '../../src/components/ErrorPage';
@@ -35,10 +36,10 @@ const StyledList = styled(List)`
   margin: 0 0 10px;
   @media (max-width: 420px) {
     margin: 0;
-  };
+  }
   @media (max-width: 1024px) {
     margin: 0;
-  };
+  } ;
 `;
 
 const StyledMessageList = styled(List)`
@@ -48,10 +49,10 @@ const StyledMessageList = styled(List)`
   margin: 0 0 30px 0;
   @media (max-width: 420px) {
     margin: 0;
-  };
+  }
   @media (max-width: 1024px) {
     margin: 0;
-  };
+  } ;
 `;
 
 const StyledContainerDiv = styled.div`
@@ -65,12 +66,13 @@ const StyledContainerDiv = styled.div`
     margin: 0;
     flex-direction: column;
     align-items: center;
-  };
+  }
   @media (max-width: 1024px) {
     margin: 20px;
     flex-direction: column;
     align-items: center;
-  };`;
+  } ;
+`;
 
 const StyledFlatDetailDiv = styled.div`
   display: flex;
@@ -88,37 +90,35 @@ const StyledButton = styled(Button)`
   max-height: 90px;
   @media (max-width: 420px) {
     margin: 0;
-  };
+  }
   @media (max-width: 1024px) {
     margin: 0;
-  };
+  } ;
 `;
 
 type FlatProps = {
   flat: {
-    id: number
-    image: string
-    location: string
-    disposition: string
-    dimension: number
-    cost: number
-    commission: string
-    equipment: string
-    message: string
-    error?: any
-  }
-}
+    id: number;
+    image: string;
+    location: string;
+    disposition: string;
+    dimension: number;
+    cost: number;
+    commission: string;
+    equipment: string;
+    message: string;
+    error?: any;
+  };
+};
 
 const Flat = ({ flat }: FlatProps) => (
   <StylesProvider injectFirst>
     <StyledContainerDiv>
-      { !flat.error ? (
+      {!flat.error ? (
         <>
           <StyledFlatDetailDiv>
             <h2>
-              {flat.location}
-              {' '}
-              {flat.dimension}
+              {flat.location} {flat.dimension}
               m2
             </h2>
             <StyledMainListDiv>
@@ -175,20 +175,21 @@ const Flat = ({ flat }: FlatProps) => (
               </StyledList>
             </StyledMainListDiv>
             <StyledMessageList>
-              <ListItem>
-                {flat.message}
-              </ListItem>
+              <ListItem>{flat.message}</ListItem>
             </StyledMessageList>
           </StyledFlatDetailDiv>
           <div>
             <Link href="/">
-              <StyledButton variant="contained" color="primary">{BACK_TO_FLAT_OFFER}</StyledButton>
+              <StyledButton variant="contained" color="primary">
+                {BACK_TO_FLAT_OFFER}
+              </StyledButton>
             </Link>
             <ModalWindow />
           </div>
         </>
-      )
-        : <ErrorPage errorMessage={flat.error} />}
+      ) : (
+        <ErrorPage errorMessage={flat.error} />
+      )}
     </StyledContainerDiv>
   </StylesProvider>
 );

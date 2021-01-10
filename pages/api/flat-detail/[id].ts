@@ -4,17 +4,17 @@ import { Env } from '@next/env';
 import { data } from '../../../src/data/data';
 
 type NextApiRequestProps = {
-    query: {
-        [key: string]: string | string[] | number;
-    };
-    cookies: {
-        [key: string]: string;
-    };
-    body: any;
-    env: Env;
-    preview?: boolean;
-    previewData?: any;
-}
+  query: {
+    [key: string]: string | string[] | number;
+  };
+  cookies: {
+    [key: string]: string;
+  };
+  body: any;
+  env: Env;
+  preview?: boolean;
+  previewData?: any;
+};
 
 export default function flatHandler(req: NextApiRequestProps, res: NextApiResponse) {
   const {

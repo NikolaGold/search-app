@@ -19,11 +19,11 @@ const StyledCard = styled(Card)`
   margin: 5px;
   flex-basis: 24%;
   @media (max-width: 420px) {
-    flex:auto;
-  };
+    flex: auto;
+  }
   @media (max-width: 1024px) {
-    flex-basis: 48%
-  };
+    flex-basis: 48%;
+  } ;
 `;
 
 const StyledButton = styled(Button)`
@@ -56,45 +56,32 @@ const StyledContent = styled.div`
 `;
 
 type ProfileCardProps = {
-    id: number
-    image: string
-    location: string
-    disposition: string
-    dimension: number
-    cost: number
-    commission: string
-    equipment: string
-}
+  id: number;
+  image: string;
+  location: string;
+  disposition: string;
+  dimension: number;
+  cost: number;
+  commission: string;
+  equipment: string;
+};
 
-const ProfileCard = ({
-  id, image, location, disposition, dimension, cost, commission, equipment,
-}: ProfileCardProps) => (
+const ProfileCard = ({ id, image, location, disposition, dimension, cost, commission, equipment }: ProfileCardProps) => (
   <StyledCard>
     <StyledCardContent>
       <StyledImg src={image} alt={`flat in ${location}`} />
       <StyledContent>
         <h3>{location}</h3>
         <div>{disposition}</div>
-        <div>
-          {dimension}
-          {' '}
-          m2
-        </div>
-        <div>
-          {cost}
-          {' '}
-          Kč
-        </div>
+        <div>{dimension} m2</div>
+        <div>{cost} Kč</div>
         <StyledChips>
           <StyledChip label={commission} />
           <Chip label={equipment} />
         </StyledChips>
         <StyledButtonContainer>
           <Link href={`flat-detail/${id}`}>
-            <StyledButton
-              variant="contained"
-              color="primary"
-            >
+            <StyledButton variant="contained" color="primary">
               Detail
             </StyledButton>
           </Link>

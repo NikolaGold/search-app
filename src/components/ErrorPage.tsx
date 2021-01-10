@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { ErrorMap } from '../constants/constants';
 
 const StyledErrorPageDiv = styled.div`
-    margin: 30px;
+  margin: 30px;
 `;
 
 type ErrorPageProps = {
-    errorMessage: string
-}
+  errorMessage: string;
+};
 
 const ErrorPage = ({ errorMessage }: ErrorPageProps) => (
   <StyledErrorPageDiv>

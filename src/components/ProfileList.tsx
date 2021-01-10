@@ -15,33 +15,34 @@ const StyledDiv = styled.div`
 
 type ProfileListProps = {
   flats: Array<{
-    id: number
-    image: string
-    location: string
-    disposition: string
-    dimension: number
-    cost: number
-    commission: string
-    equipment: string
+    id: number;
+    image: string;
+    location: string;
+    disposition: string;
+    dimension: number;
+    cost: number;
+    commission: string;
+    equipment: string;
   }>;
+};
 
-}
-
-const ProfileList = ({ flats }:ProfileListProps) => (
+const ProfileList = ({ flats }: ProfileListProps) => (
   <StyledDiv>
-    {Array.isArray(flats) && flats.length >= 1 ? flats.map((element) => (
-      <ProfileCard
-        key={element.id}
-        id={element.id}
-        image={element.image}
-        location={element.location}
-        disposition={element.disposition}
-        dimension={element.dimension}
-        cost={element.cost}
-        commission={element.commission}
-        equipment={element.equipment}
-      />
-    )) : NOT_FOUND_FLAT}
+    {Array.isArray(flats) && flats.length >= 1
+      ? flats.map((element) => (
+          <ProfileCard
+            key={element.id}
+            id={element.id}
+            image={element.image}
+            location={element.location}
+            disposition={element.disposition}
+            dimension={element.dimension}
+            cost={element.cost}
+            commission={element.commission}
+            equipment={element.equipment}
+          />
+        ))
+      : NOT_FOUND_FLAT}
   </StyledDiv>
 );
 

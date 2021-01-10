@@ -12,26 +12,26 @@ const StyledProfileDiv = styled.div`
   @media (max-width: 420px) {
     margin: 0;
     min-width: 100px;
-  };
+  }
   @media (max-width: 1024px) {
     margin: 0 10px;
     min-width: 100px;
-  };
+  } ;
 `;
 
 type SearchingListProps = {
-    flats: Array<{
-    id: number
-    image: string
-    location: string
-    disposition: string
-    dimension: number
-    cost: number
-    commission: string
-    equipment: string
-}>;
-    totalPages: number;
-}
+  flats: Array<{
+    id: number;
+    image: string;
+    location: string;
+    disposition: string;
+    dimension: number;
+    cost: number;
+    commission: string;
+    equipment: string;
+  }>;
+  totalPages: number;
+};
 
 const SearchingList = ({ flats, totalPages }: SearchingListProps) => (
   <StyledProfileDiv>

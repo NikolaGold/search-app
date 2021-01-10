@@ -15,18 +15,18 @@ type NextApiRequestProps = {
   env: Env;
   preview?: boolean;
   previewData?: any;
-}
+};
 
 type FlatProps = {
-  id: number
-  image: string
-  location: string
-  disposition: string
-  dimension: number
-  cost: number
-  commission: string
-  equipment: string
-}
+  id: number;
+  image: string;
+  location: string;
+  disposition: string;
+  dimension: number;
+  cost: number;
+  commission: string;
+  equipment: string;
+};
 
 export default (req: NextApiRequestProps, res: NextApiResponse) => {
   const { query } = req;
@@ -42,7 +42,8 @@ export default (req: NextApiRequestProps, res: NextApiResponse) => {
     data: paginateFlats(filteredFlats),
     totalPages,
   });
-  function filterFlats():Array<FlatProps> {
+
+  function filterFlats(): Array<FlatProps> {
     const dimensionFrom = {
       getValue: () => Number(query['dimension-from']),
       apply: (value, flat: any) => flat.dimension >= value,
@@ -67,7 +68,7 @@ export default (req: NextApiRequestProps, res: NextApiResponse) => {
     return flats.filter((flat: FlatProps) => filters.every((filter) => applyFilter(flat, filter)));
   }
 
-  function applyFilter(flat:FlatProps, filter: { getValue: Function, apply: Function }): Array<FlatProps> {
+  function applyFilter(flat: FlatProps, filter: { getValue: Function; apply: Function }): Array<FlatProps> {
     const value = filter.getValue();
     return value ? filter.apply(value, flat) : true;
   }

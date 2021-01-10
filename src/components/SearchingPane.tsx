@@ -1,13 +1,6 @@
 import React from 'react';
 import { StylesProvider } from '@material-ui/core/styles';
-import {
-  Button,
-  Select,
-  MenuItem,
-  Chip,
-  TextField,
-  FormControl,
-} from '@material-ui/core';
+import { Button, Select, MenuItem, TextField, FormControl } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -28,21 +21,11 @@ import {
   ErrorMap,
   UNEQUIPPED,
   PARTIALLY_EQUIPPED,
-  FULLY_EQUIPPED, NO_COMMISSION,
+  FULLY_EQUIPPED,
+  NO_COMMISSION,
 } from '../constants/constants';
 
-const dispositions = [
-  '1kk',
-  '1+1',
-  '2kk',
-  '2+1',
-  '3kk',
-  '3+1',
-  '4kk',
-  '4+1',
-  '5kk',
-  '5+1',
-];
+const dispositions = ['1kk', '1+1', '2kk', '2+1', '3kk', '3+1', '4kk', '4+1', '5kk', '5+1'];
 
 const StyledForm = styled.form`
   display: flex;
@@ -54,7 +37,7 @@ const StyledForm = styled.form`
   margin: 5px;
   @media (max-width: 420px) {
     flex-direction: column;
-  };
+  } ;
 `;
 
 const StyledMenuItem = styled(MenuItem)`
@@ -73,13 +56,13 @@ const StyledButton = styled(Button)`
 export default function SearchingPane() {
   const router = useRouter();
   const { query } = router;
-  const [disposition, setDisposition] = React.useState<string[]>(Array.isArray(query.disposition) ? query.disposition : [query.disposition]);
+  const [disposition, setDisposition] = React.useState<string[]>(
+    Array.isArray(query.disposition) ? query.disposition : [query.disposition]
+  );
   const [location, setLocation] = React.useState(query.location ? query.location : '');
   const [equipment, setEquipment] = React.useState(query.equipment ? query.equipment : '');
   const [commission, setCommission] = React.useState(query.commission ? query.commission : '');
-  const {
-    handleSubmit, setValue, errors, control, getValues,
-  } = useForm({
+  const { handleSubmit, setValue, errors, control, getValues } = useForm({
     mode: 'onChange',
     reValidateMode: 'onChange',
   });
@@ -97,19 +80,19 @@ export default function SearchingPane() {
             undefined,
             {
               shallow: false,
-            },
+            }
           );
         })}
       >
         <Controller
-          as={(
+          as={
             <TextField
               label={COST_FROM}
               type="number"
               error={!!errors['cost-from']}
               helperText={errors['cost-from'] && errors['cost-from'].message}
             />
-                      )}
+          }
           name="cost-from"
           defaultValue={query['cost-from'] ? query['cost-from'] : ''}
           control={control}
@@ -122,14 +105,14 @@ export default function SearchingPane() {
           }}
         />
         <Controller
-          as={(
+          as={
             <TextField
               label={COST_TO}
               type="number"
               error={!!errors['cost-to']}
               helperText={errors['cost-to'] && errors['cost-to'].message}
             />
-                      )}
+          }
           name="cost-to"
           defaultValue={query['cost-to'] ? query['cost-to'] : ''}
           control={control}
@@ -142,7 +125,7 @@ export default function SearchingPane() {
           }}
         />
         <Controller
-          as={(
+          as={
             <StyledFormControl>
               <InputLabel id="location-label-id">{LOCATION}</InputLabel>
               <Select
@@ -161,20 +144,20 @@ export default function SearchingPane() {
                 <MenuItem value="Znojmo">Znojmo</MenuItem>
               </Select>
             </StyledFormControl>
-                      )}
+          }
           name="location"
           defaultValue=""
           control={control}
         />
         <Controller
-          as={(
+          as={
             <TextField
               label={DIMENSION_FROM}
               type="number"
               error={!!errors['dimension-from']}
               helperText={errors['dimension-from'] && errors['dimension-from'].message}
             />
-                      )}
+          }
           name="dimension-from"
           rules={{
             required: false,
@@ -187,14 +170,14 @@ export default function SearchingPane() {
           control={control}
         />
         <Controller
-          as={(
+          as={
             <TextField
               label={DIMENSION_TO}
               type="number"
               error={!!errors['dimension-to']}
               helperText={errors['dimension-to'] && errors['dimension-to'].message}
             />
-                      )}
+          }
           rules={{
             required: false,
             pattern: {
@@ -207,7 +190,7 @@ export default function SearchingPane() {
           control={control}
         />
         <Controller
-          as={(
+          as={
             <StyledFormControl>
               <InputLabel id="commission-label">{COMMISSION}</InputLabel>
               <Select
@@ -224,13 +207,13 @@ export default function SearchingPane() {
                 <MenuItem value={NO_COMMISSION}>{NO_COMMISSION}</MenuItem>
               </Select>
             </StyledFormControl>
-                      )}
+          }
           name="commission"
           defaultValue=""
           control={control}
         />
         <Controller
-          as={(
+          as={
             <StyledFormControl>
               <InputLabel id="equipment-label">{EQUIPMENT}</InputLabel>
               <Select
@@ -248,7 +231,7 @@ export default function SearchingPane() {
                 <MenuItem value={UNEQUIPPED}>{UNEQUIPPED}</MenuItem>
               </Select>
             </StyledFormControl>
-                      )}
+          }
           name="equipment"
           control={control}
           defaultValue=""
@@ -267,9 +250,7 @@ export default function SearchingPane() {
                   setDisposition(event.target.value as string[]);
                   setValue('disposition', event.target.value);
                 }}
-                renderValue={(selected) => (
-                  (selected as string[]).join(', ')
-                )}
+                renderValue={(selected) => (selected as string[]).join(', ')}
               >
                 {dispositions.map((element) => (
                   <MenuItem key={element} value={element}>
@@ -285,11 +266,7 @@ export default function SearchingPane() {
           defaultValue=""
           multiple
         />
-        <StyledButton
-          type="submit"
-          variant="contained"
-          color="primary"
-        >
+        <StyledButton type="submit" variant="contained" color="primary">
           {SEARCH}
         </StyledButton>
       </StyledForm>
