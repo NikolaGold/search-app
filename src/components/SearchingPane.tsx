@@ -56,9 +56,7 @@ const StyledButton = styled(Button)`
 export default function SearchingPane() {
   const router = useRouter();
   const { query } = router;
-  const [disposition, setDisposition] = React.useState<string[]>(
-    Array.isArray(query.disposition) ? query.disposition : [query.disposition]
-  );
+  const [disposition, setDisposition] = React.useState<string[]>(getDisposition(query.disposition));
   const [location, setLocation] = React.useState(query.location ? query.location : '');
   const [equipment, setEquipment] = React.useState(query.equipment ? query.equipment : '');
   const [commission, setCommission] = React.useState(query.commission ? query.commission : '');
@@ -272,4 +270,14 @@ export default function SearchingPane() {
       </StyledForm>
     </StylesProvider>
   );
+}
+
+function getDisposition(disposition) {
+  if (disposition) {
+    if (Array.isArray(disposition)) {
+      return disposition;
+    }
+    return [disposition];
+  }
+  return [];
 }

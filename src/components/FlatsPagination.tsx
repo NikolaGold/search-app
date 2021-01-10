@@ -4,13 +4,11 @@ import { useRouter } from 'next/router';
 
 type FlatsPaginationProps = {
   count: number;
+  page: number;
 };
-const FlatsPagination = ({ count }: FlatsPaginationProps) => {
-  const [page, setPage] = React.useState(1);
+const FlatsPagination = ({ count, page }: FlatsPaginationProps) => {
   const router = useRouter();
-
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
     router.push(
       {
         pathname: '/',

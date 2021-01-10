@@ -53,6 +53,7 @@ type HomeProps = {
     }>;
     totalPages: number;
     error?: any;
+    page: number;
   };
 };
 
@@ -66,7 +67,11 @@ const Home = ({ flats }: HomeProps) => (
       <StyledHeaderContainer>
         <StyledHeaderText>Najdi domov</StyledHeaderText>
       </StyledHeaderContainer>
-      {!flats.error ? <SearchingList flats={flats.data} totalPages={flats.totalPages} /> : <ErrorPage errorMessage={flats.error.message} />}
+      {!flats.error ? (
+        <SearchingList flats={flats.data} totalPages={flats.totalPages} page={flats.page} />
+      ) : (
+        <ErrorPage errorMessage={flats.error.message} />
+      )}
     </StyledMain>
     <footer className={styles.footer}>
       <div>@najdidomov.cz</div>

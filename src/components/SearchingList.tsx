@@ -31,13 +31,14 @@ type SearchingListProps = {
     equipment: string;
   }>;
   totalPages: number;
+  page: number;
 };
 
-const SearchingList = ({ flats, totalPages }: SearchingListProps) => (
+const SearchingList = ({ flats, totalPages, page }: SearchingListProps) => (
   <StyledProfileDiv>
     <SearchingPane />
     <ProfileList flats={flats} />
-    <FlatsPagination count={totalPages} />
+    <FlatsPagination count={totalPages} page={page} />
   </StyledProfileDiv>
 );
 

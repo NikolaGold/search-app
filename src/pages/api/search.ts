@@ -41,6 +41,7 @@ export default (req: NextApiRequestProps, res: NextApiResponse) => {
   res.json({
     data: paginateFlats(filteredFlats),
     totalPages,
+    page,
   });
 
   function filterFlats(): Array<FlatProps> {
