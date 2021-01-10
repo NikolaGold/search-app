@@ -25,6 +25,7 @@ import {
   BACK_TO_FLAT_OFFER, API_FLAT_DETAIL,
 } from '../../src/constants/constants';
 import ModalWindow from '../../src/components/ModalWindow';
+import ErrorPage from '../../src/components/ErrorPage';
 
 const StyledList = styled(List)`
   width: 100%;
@@ -93,91 +94,115 @@ const StyledButton = styled(Button)`
   };
 `;
 
-const Flat = ({ flat }: any) => (
+type FlatProps = {
+  flat: {
+    id: number
+    image: string
+    location: string
+    disposition: string
+    dimension: number
+    cost: number
+    commission: string
+    equipment: string
+    message: string
+    error?: any
+  }
+}
+
+const Flat = ({ flat }: FlatProps) => (
   <StylesProvider injectFirst>
     <StyledContainerDiv>
-      <StyledFlatDetailDiv>
-        <h2>
-          {flat.location}
-          {' '}
-          {flat.dimension}
-          m2
-        </h2>
-        <StyledMainListDiv>
-          <img src={flat.image} alt={`flat in ${flat.location}`} width="600" />
-          <StyledList>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <LocationOnIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={LOCATION} secondary={flat.location} />
-            </ListItem>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <DomainIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={DISPOSITION} secondary={flat.disposition} />
-            </ListItem>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <AttachMoneyIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={COST} secondary={flat.cost} />
-            </ListItem>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <DashboardIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={DIMENSION} secondary={flat.dimension} />
-            </ListItem>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <EventSeatIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={EQUIPMENT} secondary={flat.equipment} />
-            </ListItem>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <AccountBalanceWalletIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary={COMMISSION} secondary={flat.commission} />
-            </ListItem>
-          </StyledList>
-        </StyledMainListDiv>
-        <StyledMessageList>
-          <ListItem>
-            {flat.message}
-          </ListItem>
-        </StyledMessageList>
-      </StyledFlatDetailDiv>
-      <div>
-        <Link href="/">
-          <StyledButton variant="contained" color="primary">{BACK_TO_FLAT_OFFER}</StyledButton>
-        </Link>
-        <ModalWindow />
-      </div>
+      { !flat.error ? (
+        <>
+          <StyledFlatDetailDiv>
+            <h2>
+              {flat.location}
+              {' '}
+              {flat.dimension}
+              m2
+            </h2>
+            <StyledMainListDiv>
+              <img src={flat.image} alt={`flat in ${flat.location}`} width="600" />
+              <StyledList>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <LocationOnIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={LOCATION} secondary={flat.location} />
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <DomainIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={DISPOSITION} secondary={flat.disposition} />
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AttachMoneyIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={COST} secondary={flat.cost} />
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <DashboardIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={DIMENSION} secondary={flat.dimension} />
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <EventSeatIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={EQUIPMENT} secondary={flat.equipment} />
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AccountBalanceWalletIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={COMMISSION} secondary={flat.commission} />
+                </ListItem>
+              </StyledList>
+            </StyledMainListDiv>
+            <StyledMessageList>
+              <ListItem>
+                {flat.message}
+              </ListItem>
+            </StyledMessageList>
+          </StyledFlatDetailDiv>
+          <div>
+            <Link href="/">
+              <StyledButton variant="contained" color="primary">{BACK_TO_FLAT_OFFER}</StyledButton>
+            </Link>
+            <ModalWindow />
+          </div>
+        </>
+      )
+        : <ErrorPage errorMessage={flat.error} />}
     </StyledContainerDiv>
   </StylesProvider>
 );
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`${API_FLAT_DETAIL}${context.params.id}`);
-  const flat = await res.json();
+  try {
+    const res = await fetch(`${API_FLAT_DETAIL}${context.params.id}`);
+    const flat = await res.json();
 
-  return {
-    props: { flat },
-  };
+    return {
+      props: { flat },
+    };
+  } catch (error: any) {
+    return { props: { flat: { error: String(error) } } };
+  }
 };
 export default Flat;

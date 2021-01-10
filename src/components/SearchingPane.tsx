@@ -12,6 +12,8 @@ import { useForm, Controller } from 'react-hook-form';
 import styled from 'styled-components';
 import InputLabel from '@material-ui/core/InputLabel';
 import { useRouter } from 'next/router';
+import Checkbox from '@material-ui/core/Checkbox';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import {
   COST_TO,
@@ -61,6 +63,7 @@ const StyledMenuItem = styled(MenuItem)`
 
 const StyledFormControl = styled(FormControl)`
   min-width: 120px;
+  max-width: 200px;
 `;
 
 const StyledButton = styled(Button)`
@@ -71,9 +74,9 @@ export default function SearchingPane() {
   const router = useRouter();
   const { query } = router;
   const [disposition, setDisposition] = React.useState<string[]>(Array.isArray(query.disposition) ? query.disposition : []);
-  const [location, setLocation] = React.useState(query.location);
-  const [equipment, setEquipment] = React.useState(query.equipment);
-  const [commission, setCommission] = React.useState(query.commission);
+  const [location, setLocation] = React.useState(query.location ? query.location : '');
+  const [equipment, setEquipment] = React.useState(query.equipment ? query.equipment : '');
+  const [commission, setCommission] = React.useState(query.commission ? query.commission : '');
   const {
     handleSubmit, setValue, errors, control, getValues,
   } = useForm({
@@ -108,7 +111,7 @@ export default function SearchingPane() {
             />
                       )}
           name="cost-from"
-          defaultValue={query['cost-from']}
+          defaultValue={query['cost-from'] ? query['cost-from'] : ''}
           control={control}
           rules={{
             required: false,
@@ -128,7 +131,7 @@ export default function SearchingPane() {
             />
                       )}
           name="cost-to"
-          defaultValue={query['cost-to']}
+          defaultValue={query['cost-to'] ? query['cost-to'] : ''}
           control={control}
           rules={{
             required: false,
@@ -160,7 +163,7 @@ export default function SearchingPane() {
             </StyledFormControl>
                       )}
           name="location"
-          defaultValue={location}
+          defaultValue=""
           control={control}
         />
         <Controller
@@ -180,7 +183,7 @@ export default function SearchingPane() {
               message: ErrorMap.numberFieldError,
             },
           }}
-          defaultValue={query['dimension-from']}
+          defaultValue={query['dimension-from'] ? query['dimension-from'] : ''}
           control={control}
         />
         <Controller
@@ -200,7 +203,7 @@ export default function SearchingPane() {
             },
           }}
           name="dimension-to"
-          defaultValue={query['dimension-to']}
+          defaultValue={query['dimension-to'] ? query['dimension-to'] : ''}
           control={control}
         />
         <Controller
@@ -223,7 +226,7 @@ export default function SearchingPane() {
             </StyledFormControl>
                       )}
           name="commission"
-          defaultValue={commission}
+          defaultValue=""
           control={control}
         />
         <Controller
@@ -248,7 +251,7 @@ export default function SearchingPane() {
                       )}
           name="equipment"
           control={control}
-          defaultValue={equipment}
+          defaultValue=""
         />
         <Controller
           render={() => (
@@ -265,16 +268,13 @@ export default function SearchingPane() {
                   setValue('disposition', event.target.value);
                 }}
                 renderValue={(selected) => (
-                  <div>
-                    {(selected as string[]).map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </div>
+                  (selected as string[]).join(', ')
                 )}
               >
                 {dispositions.map((element) => (
                   <MenuItem key={element} value={element}>
-                    {element}
+                    <Checkbox checked={disposition.indexOf(element) > -1} color="primary" />
+                    <ListItemText primary={element} />
                   </MenuItem>
                 ))}
               </Select>
@@ -282,7 +282,7 @@ export default function SearchingPane() {
           )}
           name="disposition"
           control={control}
-          defaultValue={disposition}
+          defaultValue=""
           multiple
         />
         <StyledButton

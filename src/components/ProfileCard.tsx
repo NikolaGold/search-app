@@ -26,10 +26,9 @@ const StyledButtonContainer = styled.div`
 `;
 
 const StyledCard = styled(Card)`
+  width: 100%;
   margin: 5px;
   flex-basis: 24%;
-  min-width: 300px;
-  align-items: center;
   @media (max-width: 420px) {
     flex:auto;
   };
@@ -45,9 +44,7 @@ const StyledChip = styled(Chip)`
   margin-right: 2px;
 `;
 const StyledImg = styled.img`
-  min-height: 100px;
   min-width: 200px;
-  max-height: 300px;
   max-width: 300px;
 `;
 const StyledCardContent = styled(CardContent)`
@@ -55,6 +52,7 @@ const StyledCardContent = styled(CardContent)`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: 100%;
 `;
 

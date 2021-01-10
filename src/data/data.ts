@@ -1,6 +1,6 @@
 export const data = [{
   id: 1,
-  image: './flats/flat1.jpg',
+  image: '/flats/flat1.jpg',
   location: 'Brno',
   disposition: '2+1',
   dimension: 45,
@@ -15,7 +15,7 @@ export const data = [{
 },
 {
   id: 2,
-  image: './flats/flat2.jpg',
+  image: '/flats/flat2.jpg',
   location: 'Praha',
   disposition: '2kk',
   dimension: 45,
@@ -31,7 +31,7 @@ export const data = [{
 },
 {
   id: 3,
-  image: './flats/flat3.jpg',
+  image: '/flats/flat3.jpg',
   location: 'Brno',
   disposition: '2+1',
   dimension: 45,
@@ -47,7 +47,7 @@ export const data = [{
 },
 {
   id: 4,
-  image: './flats/flat4.jpg',
+  image: '/flats/flat4.jpg',
   location: 'Brno',
   disposition: '3+1',
   dimension: 55,
@@ -63,7 +63,7 @@ export const data = [{
 },
 {
   id: 5,
-  image: './flats/flat5.jpg',
+  image: '/flats/flat5.jpg',
   location: 'Brno',
   disposition: '5+1',
   dimension: 120,
@@ -78,7 +78,7 @@ export const data = [{
 },
 {
   id: 6,
-  image: './flats/flat6.jpg',
+  image: '/flats/flat6.jpg',
   location: 'Brno',
   disposition: '2+1',
   dimension: 45,
@@ -93,7 +93,7 @@ export const data = [{
 },
 {
   id: 7,
-  image: './flats/flat7.jpg',
+  image: '/flats/flat7.jpg',
   location: 'Brno',
   disposition: '2+1',
   dimension: 45,
@@ -108,7 +108,7 @@ export const data = [{
 },
 {
   id: 8,
-  image: './flats/flat8.jpg',
+  image: '/flats/flat8.jpg',
   location: 'Praha',
   disposition: '2+1',
   dimension: 45,
@@ -123,7 +123,7 @@ export const data = [{
 },
 {
   id: 9,
-  image: './flats/flat9.jpg',
+  image: '/flats/flat9.jpg',
   location: 'Brno',
   disposition: '2+1',
   dimension: 45,
@@ -138,7 +138,7 @@ export const data = [{
 },
 {
   id: 10,
-  image: './flats/flat10.jpg',
+  image: '/flats/flat10.jpg',
   location: 'Brno',
   disposition: '1+1',
   dimension: 45,
@@ -153,7 +153,7 @@ export const data = [{
 },
 {
   id: 11,
-  image: './flats/flat11.jpg',
+  image: '/flats/flat11.jpg',
   location: 'Znojmo',
   disposition: '4kk',
   dimension: 87,
@@ -168,7 +168,7 @@ export const data = [{
 },
 {
   id: 12,
-  image: './flats/flat12.jpg',
+  image: '/flats/flat12.jpg',
   location: 'Ostrava',
   disposition: '1kk',
   dimension: 30,
@@ -183,7 +183,7 @@ export const data = [{
 },
 {
   id: 13,
-  image: './flats/flat13.jpg',
+  image: '/flats/flat13.jpg',
   location: 'Brno',
   disposition: '2kk',
   dimension: 55,

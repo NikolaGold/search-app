@@ -30,4 +30,5 @@ export const ErrorMap = {
   email: 'Zadejte prosím email ve formátu muj@email.cz',
   name: 'Zadejte prosím své jméno a příjmení',
   message: 'Prosím vyplňte zprávu',
+  error: 'Vyskytla se chyba',
 };

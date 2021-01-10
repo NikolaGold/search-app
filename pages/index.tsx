@@ -2,9 +2,13 @@ import styled from 'styled-components';
 import Head from 'next/head';
 
 import styles from '../styles/Home.module.css';
-import ProfileList from '../src/components/ProfileList';
-import { API_SEARCH } from '../src/constants/constants';
+import SearchingList from '../src/components/SearchingList';
+import { API_SEARCH, ErrorMap } from '../src/constants/constants';
+import ErrorPage from '../src/components/ErrorPage';
 
+type GetInitialProps = {
+    asPath: string;
+}
 const StyledHeaderText = styled.h1`
   background-color: #3f51b5;
   color: white;
@@ -48,6 +52,7 @@ type HomeProps = {
         equipment: string
     }>;
         totalPages: number;
+        error?: any;
     };
 }
 
@@ -59,7 +64,10 @@ const Home = ({ flats }: HomeProps) => (
     </Head>
     <StyledMain>
       <StyledHeaderContainer><StyledHeaderText>Najdi domov</StyledHeaderText></StyledHeaderContainer>
-      <ProfileList flats={flats.data} totalPages={flats.totalPages} />
+      { !flats.error ? (<SearchingList flats={flats.data} totalPages={flats.totalPages} />)
+        : (
+          <ErrorPage errorMessage={flats.error.message} />
+        )}
     </StyledMain>
     <footer className={styles.footer}>
       <div>@najdidomov.cz</div>
@@ -67,10 +75,14 @@ const Home = ({ flats }: HomeProps) => (
   </div>
 );
 
-Home.getInitialProps = async ({ asPath }) => {
-  const res = await fetch(`${API_SEARCH}${(asPath).substring(1)}`);
-  const flats = await res.json();
-  return { flats };
+Home.getInitialProps = async ({ asPath }: GetInitialProps) => {
+  try {
+    const res = await fetch(`${API_SEARCH}${(asPath).substring(1)}`);
+    const flats = await res.json();
+    return { flats };
+  } catch (error: any) {
+    return { flats: { error } };
+  }
 };
 
 export default Home;

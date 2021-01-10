@@ -41,11 +41,11 @@ export default (req: NextApiRequestProps, res: NextApiResponse) => {
       apply: (value, flat: any) => flat.dimension <= value,
     };
     const costFrom = { getValue: () => Number(query['cost-from']), apply: (value, flat: any) => flat.cost >= value };
-    const costTo = { getValue: () => Number(query['cost-to']), apply: (value, flat: any) => flat.cost >= value };
+    const costTo = { getValue: () => Number(query['cost-to']), apply: (value, flat: any) => flat.cost <= value };
     const location = { getValue: () => query.location, apply: (value, flat: any) => flat.location === value };
     const equipment = {
       getValue: () => query.equipment,
-      apply: (value, flat: any) => flat.equipment.commission === value,
+      apply: (value, flat: any) => flat.equipment === value,
     };
     const commission = { getValue: () => query.commission, apply: (value, flat: any) => flat.commission === value };
     const disposition = {

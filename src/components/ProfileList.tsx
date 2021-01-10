@@ -1,27 +1,20 @@
 import styled from 'styled-components';
 
-import SearchingPane from './SearchingPane';
-import SearchingList from './SearchingList';
-import FlatsPagination from './FlatsPagination';
+import ProfileCard from './ProfileCard';
+import { NOT_FOUND_FLAT } from '../constants/constants';
 
-const StyledProfileDiv = styled.div`
+const StyledDiv = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 1450px;
-  background-color: aliceblue;
-  @media (max-width: 420px) {
-    margin: 0;
-    min-width: 100px;
-  };
-  @media (max-width: 1024px) {
-    margin: 0 10px;
-    min-width: 100px;
-  };
+  min-height: 100px;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
 `;
 
 type ProfileListProps = {
-    flats: Array<{
+  flats: Array<{
     id: number
     image: string
     location: string
@@ -30,16 +23,26 @@ type ProfileListProps = {
     cost: number
     commission: string
     equipment: string
-}>;
-    totalPages: number;
+  }>;
+
 }
 
-const ProfileList = ({ flats, totalPages }: ProfileListProps) => (
-  <StyledProfileDiv>
-    <SearchingPane />
-    <SearchingList flats={flats} />
-    <FlatsPagination count={totalPages} />
-  </StyledProfileDiv>
+const ProfileList = ({ flats }:ProfileListProps) => (
+  <StyledDiv>
+    {Array.isArray(flats) && flats.length >= 1 ? flats.map((element) => (
+      <ProfileCard
+        key={element.id}
+        id={element.id}
+        image={element.image}
+        location={element.location}
+        disposition={element.disposition}
+        dimension={element.dimension}
+        cost={element.cost}
+        commission={element.commission}
+        equipment={element.equipment}
+      />
+    )) : NOT_FOUND_FLAT}
+  </StyledDiv>
 );
 
 export default ProfileList;
