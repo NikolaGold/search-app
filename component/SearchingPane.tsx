@@ -26,7 +26,7 @@ import {
     ErrorMap,
     UNEQUIPPED,
     PARTIALLY_EQUIPPED,
-    FULLY_EQUIPPED,
+    FULLY_EQUIPPED, NO_COMMISSION,
 } from "../constant/constants";
 
 const dispositions = [
@@ -214,8 +214,8 @@ export default function SearchingPane() {
                                 }}
                             >
                                 <StyledMenuItem value=""> </StyledMenuItem>
-                                <MenuItem value="bez provize">Bez provize</MenuItem>
-                                <MenuItem value="provize">Provize</MenuItem>
+                                <MenuItem value={COMMISSION}>{COMMISSION}</MenuItem>
+                                <MenuItem value={NO_COMMISSION}>{NO_COMMISSION}</MenuItem>
                             </Select>
                         </StyledFormControl>
                     }

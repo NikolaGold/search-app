@@ -3,6 +3,7 @@ export const DISPOSITION = "Dispozice";
 export const DIMENSION = "Plocha";
 export const EQUIPMENT = "Vybavení";
 export const COMMISSION = "Provize";
+export const NO_COMMISSION = "Bez provize"
 export const COST = "Cena";
 export const COST_FROM = "Cena od";
 export const COST_TO = "Cena do";

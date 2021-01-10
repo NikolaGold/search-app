@@ -15,9 +15,9 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
             const dimensionTo = queryFlats['dimension-to'] ? currentFlats.filter((flat) => flat.dimension <= queryFlats['dimension-to']) : flats
             const costFrom = queryFlats['cost-from'] ? currentFlats.filter((flat) => flat.cost >= queryFlats['cost-from']) : flats
             const costTo = queryFlats['cost-to'] ? currentFlats.filter((flat) => flat.cost <= queryFlats['cost-to']) : flats
-            const location = queryFlats.location ? currentFlats.filter((flat) => flat.location == queryFlats.location) : flats
-            const equipment = queryFlats.equipment ? currentFlats.filter((flat) => flat.equipment == queryFlats.equipment) : flats
-            const commission = queryFlats.commission ? currentFlats.filter((flat) => flat.commission == queryFlats.commission) : flats
+            const location = queryFlats.location ? currentFlats.filter((flat) => flat.location  == queryFlats.location) : flats
+            const equipment = queryFlats.equipment ? currentFlats.filter((flat) => flat.equipment.toLowerCase()  == queryFlats.equipment.toLowerCase()) : flats
+            const commission = queryFlats.commission ? currentFlats.filter((flat) => flat.commission.toLowerCase()  == queryFlats.commission.toLowerCase()) : flats
             const disposition = queryFlats.disposition ? currentFlats.filter(flat => queryFlats.disposition.includes(flat.disposition)) : flats
 
             const newData = flats
