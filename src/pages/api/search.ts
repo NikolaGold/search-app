@@ -1,7 +1,7 @@
 import type { NextApiResponse } from 'next';
 
 import { Env } from '@next/env';
-import { data } from '../../src/data/data';
+import { data } from '../../data/data';
 
 type NextApiRequestProps = {
   query: {

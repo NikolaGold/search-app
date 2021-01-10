@@ -1,10 +1,13 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+#Project info
+This is a search application for browsing flat offers.
+It is created in Nextjs with TypeScript, Styled component, React-hook-form, Material-ui, Eslint, Prettier.
 ## Getting Started
 
 First install node modules
 ```bash
-npm run install
+npm install
 # or
 yarn install
 ```

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import Head from 'next/head';
 
 import styles from '../styles/Home.module.css';
-import SearchingList from '../src/components/SearchingList';
-import { API_SEARCH } from '../src/constants/constants';
-import ErrorPage from '../src/components/ErrorPage';
+import SearchingList from '../components/SearchingList';
+import { API_SEARCH } from '../constants/constants';
+import ErrorPage from '../components/ErrorPage';
 
 type GetInitialProps = {
   asPath: string;

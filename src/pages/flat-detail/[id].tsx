@@ -24,9 +24,9 @@ import {
   COST,
   BACK_TO_FLAT_OFFER,
   API_FLAT_DETAIL,
-} from '../../src/constants/constants';
-import ModalWindow from '../../src/components/ModalWindow';
-import ErrorPage from '../../src/components/ErrorPage';
+} from '../../constants/constants';
+import ModalWindow from '../../components/ModalWindow';
+import ErrorPage from '../../components/ErrorPage';
 
 const StyledList = styled(List)`
   width: 100%;
