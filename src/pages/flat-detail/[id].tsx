@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { Button } from '@material-ui/core';
 import List from '@material-ui/core/List';
@@ -24,9 +24,11 @@ import {
   COST,
   BACK_TO_FLAT_OFFER,
   API_FLAT_DETAIL,
+  API_SEARCH,
 } from '../../constants/constants';
 import ModalWindow from '../../components/ModalWindow';
 import ErrorPage from '../../components/ErrorPage';
+import { data } from '../../data/data';
 
 const StyledList = styled(List)`
   width: 100%;
@@ -194,9 +196,16 @@ const Flat = ({ flat }: FlatProps) => (
   </StylesProvider>
 );
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export async function getStaticPaths() {
+  const paths = data.map((flat) => ({
+    params: { id: flat.id.toString() },
+  }));
+  return { paths, fallback: false };
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
-    const res = await fetch(`${API_FLAT_DETAIL}${context.params.id}`);
+    const res = await fetch(`${API_FLAT_DETAIL}${params.id}`);
     const flat = await res.json();
 
     return {
@@ -206,4 +215,5 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { props: { flat: { error: String(error) } } };
   }
 };
+
 export default Flat;
