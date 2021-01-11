@@ -40,7 +40,7 @@ npm run dev
 yarn dev
 ```
 
-2. Run build
+2. While dev is running, run npm run build
 
 ```bash
 npm run build

@@ -134,7 +134,7 @@ function getData(data, query) {
     const commission = { getValue: () => query.commission, apply: (value, flat: any) => flat.commission === value };
     const disposition = {
       getValue: () => query.disposition,
-      apply: (value, flat: FlatProps) => value.incserveludes(flat.disposition),
+      apply: (value, flat: FlatProps) => value.includes(flat.disposition),
     };
     const filters = [dimensionFrom, dimensionTo, costFrom, costTo, location, equipment, commission, disposition];
     return flats.filter((flat: FlatProps) => filters.every((filter) => applyFilter(flat, filter)));
