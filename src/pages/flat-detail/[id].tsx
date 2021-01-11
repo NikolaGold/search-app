@@ -28,7 +28,6 @@ import {
 } from '../../constants/constants';
 import ModalWindow from '../../components/ModalWindow';
 import ErrorPage from '../../components/ErrorPage';
-import { data } from '../../data/data';
 
 const StyledList = styled(List)`
   width: 100%;
@@ -197,7 +196,9 @@ const Flat = ({ flat }: FlatProps) => (
 );
 
 export async function getStaticPaths() {
-  const paths = data.map((flat) => ({
+  const res = await fetch(API_SEARCH);
+  const flats = await res.json();
+  const paths = flats.map((flat) => ({
     params: { id: flat.id.toString() },
   }));
   return { paths, fallback: false };

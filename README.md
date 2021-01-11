@@ -2,18 +2,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 #Project info
 This is a search application for browsing flat offers.
-It is created in Nextjs with TypeScript, Styled component, React-hook-form, Material-ui, Eslint, Prettier.
-## Getting Started
+It is created in Next.js with TypeScript, Styled component, React-hook-form, Material-ui, Eslint, Prettier.
 
-First install node modules
+##Getting Started
+
+1. Install node modules
 ```bash
 npm install
 # or
 yarn install
 ```
 
-Then run the development server:
-
+2. Run the development server:
 ```bash
 npm run dev
 # or
@@ -31,11 +31,25 @@ API routes **http://localhost:3000/api/flat-detail/[id]** This endpoint can be e
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## How build this project
-Run build:
+## How to create a Static export and build
+
+1. Run the dev server:
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+2. Run build
 
 ```bash
 npm run build
 # or
 yarn build
+```
+
+## How to run static export
+After creating static export:
+```bash
+serve out
 ```

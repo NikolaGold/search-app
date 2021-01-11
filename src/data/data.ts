@@ -6,7 +6,7 @@ export const data = [
     disposition: '2+1',
     dimension: 45,
     cost: 12000,
-    commission: 'Bez provize',
+    commission: 'Provize',
     equipment: 'Částečně vybavený',
     message:
       'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam ante.' +
